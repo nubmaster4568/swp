@@ -1,0 +1,253 @@
+
+@font-face {
+    font-family: "Arame";
+    src: url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.eot");
+    src: url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/88b96d4bbbd5526e485ca727c48da139.svg#Arame")format("svg");
+}
+@font-face {
+    font-family: "Arame Thin";
+    src: url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.eot");
+    src: url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/ff5cf1846d79fb19d0ded1c627535a9b.svg#Arame Thin")format("svg");
+}
+
+body {
+    font-family: Arame, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /*! scale: 1px; */
+    background: linear-gradient(90deg, #050618ff, #09121a);
+
+}
+
+.container {
+    /*! background-color: white; */
+    /*! box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    /*! border-radius: -78px; */
+    width: 100%;
+    /*! max-width: 90%; */
+    height: 100%; /* Full height */
+    display: flex;
+    flex-direction: column;
+    border-color: #37e5d9;
+    border: solid 1px #899896;
+}
+
+.chat-list {
+    flex: 1; /* Take remaining space */
+    overflow-y: auto; /* Scrollable chat list */
+}
+
+.messages {
+    display: flex; /* Change to flex layout */
+    flex-direction: column; /* Stack children vertically */
+    position: absolute; /* Overlay effect */
+
+    left: 0;
+    right: 0;
+
+
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /*! padding: 20px; */
+    z-index: 10;
+    height: 100%;
+    padding-top: 0px;
+    width: 100%;
+    margin: 0 auto;
+}
+.messages-header {
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  position: fixed;
+  top: 0;
+  background-color: #8c94ff14;
+  padding: 5px; /* Reduce padding to better fit the 35px height */
+  z-index: 20;
+  margin: 0; /* Remove negative margin to keep it aligned */
+  backdrop-filter: blur(3px);
+  background-blend-mode: hue;
+  height: 45px; /* Keep the height as per your request */
+  /*! width: 9px; */
+  /*! width: 120%; */
+  border: solid 1px #404040;
+  width: 100%;
+}
+
+.messages-header h2 {
+  flex: 1; /* Ensure the h2 takes the full width */
+  text-align: right; /* Center the heading */
+  /*! height: 20px; */
+  font-size: 10px;
+  align-content: center;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  right: 10px;
+  margin: 10px;
+}
+.messages-header h1 {
+  width: auto; /* You can set a smaller width if desired */
+  font-size: 11px; /* Adjust font size */
+  padding: 10px; /* Adjust padding if necessary */
+}
+#messagesList {
+    flex: 1; /* Take available space */
+    overflow-y: auto; /* Scrollable if needed */
+    margin-bottom: 199px; /* Spacing below */
+    bottom: 0px;
+    margin-top: 20px;
+}
+
+.message-input {
+    display: flex; /* Align input and button side by side */
+    margin-top: auto; /* Push to the bottom */
+}
+h1 {
+    font-size: 24px;
+    text-align: center;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    /*! background-color: #f1f1f1; */
+    padding: 10px;
+    margin: 5px 0;
+    /*! border-radius: 4px; */
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer; /* Change cursor to indicate clickability */
+    border: solid 1px #899896;
+}
+
+li:hover {
+    background-color: rgba(221, 221, 221, 0.11);
+    color: white;
+}
+
+.loading {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+}
+
+/* Styles for messages */
+.message {
+    display: flex;
+    justify-content: space-between; /* Aligns body and timestamp */
+    align-items: center;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 5px;
+    max-width: 70%;
+    font-family: Arame Thin, sans-serif;
+    font-size: 12px;
+    border: none;
+    border-bottom: solid 1px rgba(240, 248, 255, 0.19);
+}
+.message-timestamp {
+    font-size: 12px;
+    color: gray;
+    margin-left: 10px;
+    text-align: right;
+}
+/* Messages sent by the current user (align right) */
+.message.me {
+    /*! background-color: #0004f4; */ /* Light blue for sent messages */
+    margin-left: auto; /* Align to the right */
+    /*! border: solid 1px #899896; */
+    border-radius: 2px;
+    /*! font-family: Arame-thin; */
+    font-family: Arame Thin, sans-serif;
+}
+
+/* Messages sent by others (align left) */
+.message.other {
+    background-color: #0000004a; /* Light gray for received messages */
+    margin-right: auto; /* Align to the left */
+
+    border-radius: 0px;
+}
+#backButton {
+    background-color: #03005940; /* Semi-transparent blue background */
+    color: white; /* White text */
+    border: solid 2px #899896; /* Border styling */
+    /*! padding: 10px 15px; */ /* Adequate padding for better touch interaction */
+    text-align: center; /* Center text */
+    text-decoration: none; /* No underline */
+    display: inline-block; /* Display like a button */
+    margin-bottom: 0px; /* No margin at the bottom */
+    cursor: pointer; /* Pointer cursor on hover */
+    /*! border-radius: 5px; */ /* Add rounded corners */
+    position: absolute; /* Use absolute positioning */
+    left: 10px; /* Align to the left */
+    /*! top: 10px; */ /* Position near the top */
+    z-index: 30; /* Ensure it's above other elements */
+}
+
+#backButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.message-input {
+    display: flex; /* Align input and button side by side */
+    margin-top: auto; /* Push to the bottom */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+#messageInput {
+    flex: 1; /* Take available space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in the height */
+    font-size: 11px; /* Font size for input text */
+    color: white; /* Text color */
+    background-color: #22222242; /* Background color of the input */
+    border: none;
+
+    font-family: Arame Thin, sans-serif;
+}
+
+/* Change the caret color to yellow */
+#messageInput::placeholder {
+    color: #ccc; /* Color of the placeholder text */
+}
+
+#messageInput {
+    caret-color: yellow; /* Set the caret color to yellow */
+    border: none;
+}
+
+#sendButton {
+    background-color: #4C65AF33; /* Green background */
+    color: white; /* White text */
+    border: solid 1px aliceblue; /* No border */
+    padding: 10px 15px; /* Some padding */
+    margin-left: 10px; /* Space between input and button */
+    cursor: pointer; /* Pointer cursor on hover */
+    /*! border-radius: 5px; */ /* Rounded corners */
+}
+
+#sendButton:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

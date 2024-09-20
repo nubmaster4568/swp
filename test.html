@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circular Menu with Rotation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://rawgit.com/yandongCoder/circular-menu/master/dist/css/circular-menu.css">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .tips {
+      font-size: 40px;
+      color: #999;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .menu1 {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.5s; /* Smooth rotation */
+    }
+    .my-icon {
+      background: url("https://rawgit.com/yandongCoder/circular-menu/master/examples/circular-menu.png");
+    }
+    .icon1 {
+      background-position: 0 0;
+    }
+    .icon2 {
+      background-position: 0 -56px;
+    }
+    .icon3 {
+      background-position: 0 -116px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="tips">
+  Right click in page.
+</div>
+<div id="menu1" class="menu1">
+  <!-- Circular menu items will be injected here by JavaScript -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script src="https://rawgit.com/yandongCoder/circular-menu/master/dist/js/circular-menu.js"></script>
+
+<script>
+  var menu = CMenu("#menu1")
+    .config({
+      menus: [{
+        title: "GitHub",
+        icon: "fa fa-github",
+        href: {
+          url: "http://github.com",
+          blank: true
+        }
+      }, {
+        title: "GitLab",
+        icon: ["fa fa-gitlab", '#4078c0'],
+      }, {
+        title: "subMenu",
+        icon: "my-icon icon1",
+        menus: [{
+          title: 'subMenu1',
+          icon: 'fa fa-firefox'
+        }, {
+          title: 'subMenu2',
+          icon: 'fa fa-file'
+        }]
+      }, {
+        title: "subMenu",
+        icon: "my-icon icon2"
+      }, {
+        title: "click",
+        icon: "my-icon icon3"
+      }, {
+        title: "hash-href",
+        href: "#someHash"
+      }, {
+        title: "clickMe!",
+        click: function() {
+          alert('click event callback');
+        }
+      }, {
+        disabled: true,
+        title: "disabled"
+      }]
+    });
+
+  let rotation = 0;
+
+  $(document).click(function() {
+    menu.hide();
+  });
+
+  $(document).contextmenu(function(e) {
+    menu.show([e.pageX, e.pageY]);
+    return false;
+  });
+
+  $(document).on('wheel', function(e) {
+    if (menu.is(':visible')) {
+      // Determine the direction of the scroll
+      rotation += (e.originalEvent.deltaY > 0) ? 15 : -15; // Rotate 15 degrees per scroll
+      $('.menu1').css('transform', 'translate(-50%, -50%) rotate(' + rotation + 'deg)');
+    }
+  });
+
+</script>
+</body>
+</html>
