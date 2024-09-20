@@ -161,7 +161,7 @@ function setupWebSocket() {
         ws.close(); // Close previous WebSocket connection if it exists
     }
 
-    ws = new WebSocket('wss://swp-r0lp.onrender.com:2000');
+    ws = new WebSocket('wss://swp-r0lp.onrender.com');
     ws.onopen = () => {
         console.log('Connected to WebSocket');
     };
