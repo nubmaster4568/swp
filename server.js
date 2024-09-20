@@ -3,13 +3,14 @@ const cors = require('cors'); // Import the cors package
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const WebSocket = require('ws');
 const qrcode = require('qrcode');
+const path = require('path'); // Import path module
 
 const wss = new WebSocket.Server({ noServer: true });
 
 const app = express();
 app.use(cors()); // Enable CORS for all routes
 app.use(express.json()); // For parsing JSON requests
-
+app.use(express.static(path.join(__dirname))); // Serve static files from the main directory
 // Create WhatsApp client using LocalAuth
 const client = new Client({
     authStrategy: new LocalAuth(),
