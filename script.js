@@ -4,7 +4,7 @@ let currentChatId = ''; // Store the currently selected chat ID
 // Function to fetch chat names
 async function fetchChatNames() {
     try {
-        const response = await fetch('http://localhost:3000/chats');
+        const response = await fetch('https://swp-r0lp.onrender.com/chats');
         const chatData = await response.json();
 
         // Remove the loading text
@@ -41,7 +41,7 @@ async function handleChatClick(chatId, listItem) {
 async function fetchMessages(chatId) {
     currentChatId = chatId; // Set the current chat ID
     try {
-        const response = await fetch(`http://localhost:3000/messages?chatId=${chatId}`);
+        const response = await fetch(`https://swp-r0lp.onrender.com/messages?chatId=${chatId}`);
         const messages = await response.json();
         displayMessages(messages);
         setupWebSocket(); // Reconnect WebSocket for real-time updates
@@ -130,7 +130,7 @@ document.getElementById('sendButton').onclick = async function() {
         const chatIdElement = document.getElementById('messageTo'); // Get the element
         const chatId = chatIdElement.textContent; // Extract the text content
 
-        const response = await fetch(`http://localhost:3000/send-message`, {
+        const response = await fetch(`https://swp-r0lp.onrender.com/send-message`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -161,8 +161,7 @@ function setupWebSocket() {
         ws.close(); // Close previous WebSocket connection if it exists
     }
 
-    ws = new WebSocket('ws://localhost:2000'); // Connect to WebSocket
-
+    ws = new WebSocket('wss://swp-r0lp.onrender.com:2000');
     ws.onopen = () => {
         console.log('Connected to WebSocket');
     };
